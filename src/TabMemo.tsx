@@ -5,6 +5,7 @@ type TabType = {
   id: string;
   title: string;
   url: string;
+  faviconUrl: string | undefined;
 };
 
 const TabMemo = () => {
@@ -52,6 +53,7 @@ const TabMemo = () => {
             id: uuidv4(),
             title: tab.title,
             url: tab.url,
+            faviconUrl: tab.favIconUrl,
           });
 
           memosObj[tab.url] = memo;
@@ -73,8 +75,20 @@ const TabMemo = () => {
         {tabsState.map((tab) => (
           <div
             key={tab.id}
-            style={{ display: "flex", marginTop: 5, marginBottom: 5 }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginTop: 5,
+              marginBottom: 5,
+            }}
           >
+            <img
+              src={tab.faviconUrl}
+              alt=""
+              width={16}
+              height={16}
+              style={{ marginRight: 5 }}
+            />
             <div
               style={{
                 width: 200,
